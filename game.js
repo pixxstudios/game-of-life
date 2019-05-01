@@ -10,7 +10,7 @@ function create2dArray(cols, rows) {
 let grid;
 let cols;
 let rows;
-let resolution = 40;
+let resolution = 20;
 
 function setup() {
     createCanvas(400, 400);
@@ -18,10 +18,10 @@ function setup() {
     cols = width/resolution;
     rows = height/resolution;
 
-    grid = create2dArray(10, 10);
+    grid = create2dArray(cols, rows);
 
-    for(let i=0;i<10;i++) {
-        for(j=0;j<10;j++) {
+    for(let i=0;i<cols;i++) {
+        for(let j=0;j<rows;j++) {
             grid[i][j] = floor(random(2));
         }
     }
@@ -29,8 +29,8 @@ function setup() {
 
 function draw() {
     background(0);
-    for(let i=0;i<10;i++) {
-        for(j=0;j<10;j++) {
+    for(let i=0;i<cols;i++) {
+        for(j=0;j<rows;j++) {
              let x = i * resolution;
              let y = j * resolution;
 
