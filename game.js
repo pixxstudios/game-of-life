@@ -29,8 +29,26 @@ function setup() {
 
 function draw() {
     background(0);
+
+    let next = create2dArray(cols, rows);
+
+    for(let i=0; i<cols; i++) {
+        for(let j=0; j<rows; j++) {
+            let state = grid[i][j];
+
+            let sum = 0;
+            let neighbors = countneighbors(grid, i,j);
+
+            if ( state == 0 && neighbors == 3) next[i][j] = 1;
+            else if (state == 1 && (neighbors <2 || neighbors > 3)) next[i][j] = 0;
+            else next[i][j] = state;
+        }
+    }
+
+    grid = next;
+
     for(let i=0;i<cols;i++) {
-        for(j=0;j<rows;j++) {
+        for(let j=0;j<rows;j++) {
              let x = i * resolution;
              let y = j * resolution;
 
@@ -40,4 +58,17 @@ function draw() {
              }
         }
     }
+}
+
+function countneighbors(grid, x, y) {
+    let sum = 0;
+    for(let i=-1; i < 2; i++) {
+        for(let j=-1; j < 2; j++) {
+            let col = (x + i + cols) % cols;
+            let row = (y + j + rows) % rows;
+            sum += grid[col][row];
+        }
+    }
+    sum -= grid[x][y];
+    return sum;
 }
