@@ -10,7 +10,7 @@ function create2dArray(cols, rows) {
 let grid;
 let cols;
 let rows;
-let resolution = 20;
+let resolution = 10;
 
 function setup() {
     createCanvas(400, 400);
@@ -28,7 +28,7 @@ function setup() {
 }
 
 function draw() {
-    background(0);
+    background('black');
 
     let next = create2dArray(cols, rows);
 
@@ -53,7 +53,7 @@ function draw() {
              let y = j * resolution;
 
              if(grid[i][j] === 1) {
-                 fill(255);
+                fill('blue');
                 rect(x, y, resolution, resolution);
              }
         }
